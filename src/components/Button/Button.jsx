@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import { HiOutlineTrash } from 'react-icons/hi';
 import s from './Button.module.scss';
 
+export const AuthButton = ({ text, clickHeandler }) => {
+  return (
+    <button className={s.buttonAdd} onClick={clickHeandler}>
+      {text}
+    </button>
+  );
+};
+
 export const AddButton = () => {
   return <button className={s.buttonAdd}>Add contact</button>;
 };

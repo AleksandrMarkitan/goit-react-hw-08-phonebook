@@ -1,0 +1,22 @@
+export const selectUserName = state => {
+  console.log(state.auth.user.name);
+  return state.auth.user.name;
+};
+export const selectUserEmail = state => {
+  return state.auth.user.email;
+};
+export const selectToken = state => {
+  return state.auth.token;
+};
+export const selectIsLoggedIn = state => {
+  return state.auth.isLoggedIn;
+};
+export const selectIsLoading = state => {
+  return state.auth.isLoading;
+};
+export const selectError = state => {
+  return state.auth.error;
+};
+export const selectIsFetchingCurrentUser = state => {
+  return state.auth.isFetchingCurrentUser;
+};
