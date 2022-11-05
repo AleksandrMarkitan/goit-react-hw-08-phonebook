@@ -20,7 +20,6 @@ import { Section } from '../../components/Section/Section';
 import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { Filter } from '../../components/Filter/Filter';
 import { ContactList } from '../../components/ContactList/ContactList';
-// import { fetchCurrentUser } from '../../redux/auth/authOperations';
 
 import s from '../../components/ContactList/ContactList.module.scss';
 
@@ -33,7 +32,6 @@ export const ContactsPage = () => {
 
   useEffect(() => {
     dispatch(fetchContacts());
-    // dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   const addNewContact = contact => {
@@ -53,6 +51,11 @@ export const ContactsPage = () => {
   const contactDelete = id => {
     dispatch(deleteContact(id));
   };
+
+  //вызываем из модалки
+  // const contactEdit = id => {
+  //   dispatch(editContact(id));
+  // };
 
   return (
     <Section>

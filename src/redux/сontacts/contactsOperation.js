@@ -38,8 +38,8 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
-export const editingContact = createAsyncThunk(
-  'contacts/editingContact',
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch(`/contacts/${id}`);

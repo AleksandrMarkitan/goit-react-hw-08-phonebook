@@ -1,5 +1,4 @@
 export const selectUserName = state => {
-  console.log(state.auth.user.name);
   return state.auth.user.name;
 };
 export const selectUserEmail = state => {
@@ -7,9 +6,6 @@ export const selectUserEmail = state => {
 };
 export const selectToken = state => {
   return state.auth.token;
-};
-export const selectIsLoggedIn = state => {
-  return state.auth.isLoggedIn;
 };
 export const selectIsLoading = state => {
   return state.auth.isLoading;

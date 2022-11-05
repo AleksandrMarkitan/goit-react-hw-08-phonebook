@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectContacts } from 'redux/сontacts/contactsSelectors';
 import { selectFilter } from 'redux/filter/filterSelectors';
 import { Contact } from './ContactItem';
-import { DeleteButton } from '../Button/Button';
+import { DeleteButton, EditButton } from '../Button/Button';
 import s from './ContactList.module.scss';
 
 export const ContactList = ({ contactDelete }) => {
@@ -17,11 +17,18 @@ export const ContactList = ({ contactDelete }) => {
         .map(contact => (
           <li key={contact.id} className={s.item}>
             <Contact contact={contact} />
-            <DeleteButton
-              type="button"
-              contactDelete={contactDelete}
-              contactId={contact.id}
-            />
+            <div className={s.buttonBox}>
+              <EditButton
+                type="button"
+                contactDelete={contactDelete}
+                contactId={contact.id}
+              />
+              <DeleteButton
+                type="button"
+                contactDelete={contactDelete}
+                contactId={contact.id}
+              />
+            </div>
           </li>
         ))}
     </ul>
