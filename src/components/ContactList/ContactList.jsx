@@ -6,7 +6,7 @@ import { Contact } from './ContactItem';
 import { DeleteButton, EditButton } from '../Button/Button';
 import s from './ContactList.module.scss';
 
-export const ContactList = ({ contactDelete }) => {
+export const ContactList = ({ contactDelete, openModal }) => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
 
@@ -20,7 +20,7 @@ export const ContactList = ({ contactDelete }) => {
             <div className={s.buttonBox}>
               <EditButton
                 type="button"
-                contactDelete={contactDelete}
+                openModal={openModal}
                 contactId={contact.id}
               />
               <DeleteButton

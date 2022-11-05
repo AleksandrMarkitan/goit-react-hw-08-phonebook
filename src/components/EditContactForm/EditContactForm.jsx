@@ -2,9 +2,9 @@
 import { useState } from 'react';
 
 import { SaveButton } from '../Button/Button';
-import s from './ContactForm.module.scss';
+import s from './EditContactForm.module.scss';
 
-export const ContactForm = ({ addNewContact }) => {
+export const EditContactForm = ({ addNewContact }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -36,7 +36,7 @@ export const ContactForm = ({ addNewContact }) => {
 
   return (
     <form className={s.form} onSubmit={e => handleOnSubmit(e)}>
-      <h3 className={s.title}>Add contact</h3>
+      <h3 className={s.title}>Edit contact</h3>
       <label className={s.label}>
         Name
         <input
@@ -68,6 +68,6 @@ export const ContactForm = ({ addNewContact }) => {
   );
 };
 
-// ContactForm.propTypes = {
+// EditContactForm.propTypes = {
 //   addNewContact: PropTypes.func.isRequired,
 // };

@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -17,13 +17,16 @@ import {
 import { filterContacts } from 'redux/filter/filterSlice';
 
 import { Section } from '../../components/Section/Section';
-import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { Filter } from '../../components/Filter/Filter';
 import { ContactList } from '../../components/ContactList/ContactList';
+import { AddButton } from 'components/Button/Button';
+import { Modal } from 'components/Modal/Modal';
 
-import s from '../../components/ContactList/ContactList.module.scss';
+import s from '../ContactsPage/ContactPage.module.scss';
 
 export const ContactsPage = () => {
+  const [modalIsOpen, setmodalIsOpen] = useState('');
+
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -52,6 +55,14 @@ export const ContactsPage = () => {
     dispatch(deleteContact(id));
   };
 
+  const openModal = param => {
+    setmodalIsOpen(param);
+  };
+
+  const closeModal = () => {
+    setmodalIsOpen(false);
+  };
+
   //вызываем из модалки
   // const contactEdit = id => {
   //   dispatch(editContact(id));
@@ -59,15 +70,25 @@ export const ContactsPage = () => {
 
   return (
     <Section>
-      <h1>Phonebook</h1>
-      <ContactForm addNewContact={addNewContact} />
       <div className={s.contacts}>
-        <h2 className={s.h2}>Contacts</h2>
+        <div className={s.addButtonBox}>
+          <h2 className={s.h2}>Contacts</h2>
+          <AddButton type="button" openModal={openModal} />
+        </div>
         <Filter filtration={filtration} />
         {isLoading && <p>Loading...</p>}
         {error && <p> {error} </p>}
-        {!isLoading && !error && <ContactList contactDelete={contactDelete} />}
+        {!isLoading && !error && (
+          <ContactList contactDelete={contactDelete} openModal={openModal} />
+        )}
       </div>
+      {modalIsOpen && (
+        <Modal
+          closeModal={closeModal}
+          param={modalIsOpen}
+          addNewContact={addNewContact}
+        />
+      )}
     </Section>
   );
 };
