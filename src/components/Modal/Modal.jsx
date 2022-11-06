@@ -6,7 +6,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 
 import s from '../Modal/Modal.module.scss';
 
-export const Modal = ({ closeModal, param, addNewContact }) => {
+export const Modal = ({ closeModal, param, addNewContact, contact }) => {
   useEffect(() => {
     const closeByEsc = ({ code }) => {
       if (code === 'Escape') {
@@ -29,7 +29,9 @@ export const Modal = ({ closeModal, param, addNewContact }) => {
     <>
       <div className={s.overlay} onClick={closeByBackdrop}>
         <div className={s.modal}>
-          {param === 'edit' && <EditContactForm />}
+          {param === 'edit' && (
+            <EditContactForm contact={contact} closeModal={closeModal} />
+          )}
           {param === 'add' && <ContactForm addNewContact={addNewContact} />}
         </div>
       </div>

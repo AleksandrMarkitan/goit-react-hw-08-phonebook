@@ -4,6 +4,7 @@ import {
   HiOutlineTrash,
   HiOutlinePencil,
   HiOutlineUserAdd,
+  HiOutlineLogout,
 } from 'react-icons/hi';
 import s from './Button.module.scss';
 
@@ -15,13 +16,21 @@ export const AuthButton = ({ text, clickHeandler }) => {
   );
 };
 
+export const LogOutButton = ({ text, clickHeandler }) => {
+  return (
+    <button className={s.buttonLogOut} onClick={clickHeandler}>
+      {text} <HiOutlineLogout className={s.buttonLogOutSvg} size={24} />
+    </button>
+  );
+};
+
 export const SaveButton = () => {
   return <button className={s.buttonAdd}>Save</button>;
 };
 
 export const AddButton = ({ openModal, type }) => {
   const handleDelBtn = () => {
-    openModal('add'); //вызов модалки add contact из которой вызываем contactEdit
+    openModal('add');
   };
   return (
     <button type={type} className={s.buttonDel} onClick={handleDelBtn}>
@@ -30,9 +39,9 @@ export const AddButton = ({ openModal, type }) => {
   );
 };
 
-export const EditButton = ({ openModal, type }) => {
+export const EditButton = ({ type, contact, openModal }) => {
   const handleDelBtn = () => {
-    openModal('edit'); //вызов модалки add contact из которой вызываем contactEdit
+    openModal('edit', contact);
   };
   return (
     <button type={type} className={s.buttonDel} onClick={handleDelBtn}>

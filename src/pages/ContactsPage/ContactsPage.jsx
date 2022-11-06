@@ -21,11 +21,13 @@ import { Filter } from '../../components/Filter/Filter';
 import { ContactList } from '../../components/ContactList/ContactList';
 import { AddButton } from 'components/Button/Button';
 import { Modal } from 'components/Modal/Modal';
+// import { UserAuthMenu } from 'components/UserAuthMenu/UserAuthMenu';
 
 import s from '../ContactsPage/ContactPage.module.scss';
 
 export const ContactsPage = () => {
   const [modalIsOpen, setmodalIsOpen] = useState('');
+  const [currentContact, setcurrentContact] = useState(null);
 
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectLoading);
@@ -55,18 +57,14 @@ export const ContactsPage = () => {
     dispatch(deleteContact(id));
   };
 
-  const openModal = param => {
+  const openModal = (param, contact) => {
     setmodalIsOpen(param);
+    setcurrentContact(contact);
   };
 
   const closeModal = () => {
     setmodalIsOpen(false);
   };
-
-  //вызываем из модалки
-  // const contactEdit = id => {
-  //   dispatch(editContact(id));
-  // };
 
   return (
     <Section>
@@ -87,6 +85,7 @@ export const ContactsPage = () => {
           closeModal={closeModal}
           param={modalIsOpen}
           addNewContact={addNewContact}
+          contact={currentContact}
         />
       )}
     </Section>

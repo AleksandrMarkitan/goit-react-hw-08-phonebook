@@ -21,7 +21,7 @@ export const ContactList = ({ contactDelete, openModal }) => {
               <EditButton
                 type="button"
                 openModal={openModal}
-                contactId={contact.id}
+                contact={contact}
               />
               <DeleteButton
                 type="button"

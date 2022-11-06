@@ -27,7 +27,7 @@
   height: 28px;
   padding: 0;
 
-  background: #ffffff8c;
+  background: transparent;
   border: none;
   order: 1;
   align-self: stretch;
@@ -39,6 +39,39 @@
 
 .buttonDelSvg {
   color: #000000;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+}
+
+.buttonLogOut {
+  position: absolute;
+  bottom: 34px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 137%;
+  background: none;
+  border: none;
+  align-self: stretch;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+}
+
+.buttonLogOutSvg {
+  color: #ffffff;
 
   &:hover {
     cursor: pointer;
