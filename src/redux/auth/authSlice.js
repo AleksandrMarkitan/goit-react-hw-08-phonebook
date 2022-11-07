@@ -65,10 +65,9 @@ const authSlice = createSlice({
     [fetchCurrentUser.pending]: state => {
       state.isLoading = true;
     },
-    [fetchCurrentUser.fulfilled]: (state, { payload: { user, token } }) => {
+    [fetchCurrentUser.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.user = user;
-      state.token = token;
+      state.user = payload;
     },
     [fetchCurrentUser.rejected]: (state, { payload }) => {
       state.isLoading = false;

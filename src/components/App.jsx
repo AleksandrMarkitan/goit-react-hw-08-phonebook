@@ -10,9 +10,11 @@ import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { selectIsFetchingCurrentUser } from 'redux/auth/authSelectors';
 import { PublicRoute } from 'HOCs/PublicRoute';
 import { PrivateRoute } from 'HOCs/PrivateRoute';
+
 export const App = () => {
   const isFetchingCurrentUser = useSelector(selectIsFetchingCurrentUser);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);

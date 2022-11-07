@@ -9,7 +9,6 @@ import s from './ContactList.module.scss';
 export const ContactList = ({ contactDelete, openModal }) => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
-
   return (
     <ul className={s.list}>
       {contacts
