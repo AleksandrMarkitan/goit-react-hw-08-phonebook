@@ -14,7 +14,7 @@ export const ContactList = ({ contactDelete, openModal }) => {
       {contacts
         .filter(contact => contact.name.toLowerCase().includes(filter))
         .map(contact => (
-          <li key={contact.id} className={s.item}>
+          <li key={contact._id} className={s.item}>
             <Contact contact={contact} />
             <div className={s.buttonBox}>
               <EditButton
@@ -25,7 +25,7 @@ export const ContactList = ({ contactDelete, openModal }) => {
               <DeleteButton
                 type="button"
                 contactDelete={contactDelete}
-                contactId={contact.id}
+                contactId={contact._id}
               />
             </div>
           </li>
