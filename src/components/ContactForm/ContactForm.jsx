@@ -6,7 +6,7 @@ import s from './ContactForm.module.scss';
 
 export const ContactForm = ({ addNewContact }) => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setNumber] = useState('');
 
   const handleContactInput = e => {
     const { name, value } = e.target;
@@ -14,7 +14,7 @@ export const ContactForm = ({ addNewContact }) => {
       case 'name':
         setName(value);
         break;
-      case 'number':
+      case 'phone':
         setNumber(value);
         break;
 
@@ -30,7 +30,7 @@ export const ContactForm = ({ addNewContact }) => {
 
   const handleOnSubmit = e => {
     e.preventDefault();
-    addNewContact({ name, number });
+    addNewContact({ name, phone });
     onFormReset();
   };
 
@@ -54,9 +54,9 @@ export const ContactForm = ({ addNewContact }) => {
         Number
         <input
           className={s.input}
-          value={number}
+          value={phone}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required

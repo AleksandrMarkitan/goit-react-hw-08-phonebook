@@ -64,6 +64,7 @@ const authSlice = createSlice({
     },
     [fetchCurrentUser.pending]: state => {
       state.isLoading = true;
+      state.error = null;
     },
     [fetchCurrentUser.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
@@ -72,6 +73,12 @@ const authSlice = createSlice({
     [fetchCurrentUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
+      state.user = {
+        name: '',
+        email: '',
+      };
+      state.token = null;
+      // }
     },
   },
 });

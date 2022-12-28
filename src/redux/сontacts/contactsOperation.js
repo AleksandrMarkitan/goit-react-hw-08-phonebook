@@ -32,7 +32,7 @@ export const deleteContact = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(`/contacts/${id}`);
-      return data.id;
+      return data.result._id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -41,9 +41,9 @@ export const deleteContact = createAsyncThunk(
 export const editContact = createAsyncThunk(
   'contacts/editContact',
   async (contact, { rejectWithValue }) => {
-    const { id, name, number } = contact;
+    const { id, name, phone } = contact;
     try {
-      await axios.patch(`/contacts/${id}`, { name, number });
+      await axios.patch(`/contacts/${id}`, { name, phone });
       return contact;
     } catch (error) {
       return rejectWithValue(error.message);

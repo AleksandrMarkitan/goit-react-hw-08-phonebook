@@ -8,7 +8,7 @@ import s from './EditContactForm.module.scss';
 
 export const EditContactForm = ({ contact, closeModal }) => {
   const [name, setName] = useState(contact.name);
-  const [number, setNumber] = useState(contact.number);
+  const [phone, setNumber] = useState(contact.phone);
 
   const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ export const EditContactForm = ({ contact, closeModal }) => {
       case 'name':
         setName(value);
         break;
-      case 'number':
+      case 'phone':
         setNumber(value);
         break;
 
@@ -35,7 +35,7 @@ export const EditContactForm = ({ contact, closeModal }) => {
   const handleOnSubmit = e => {
     e.preventDefault();
     const id = contact.id;
-    dispatch(editContact({ id, name, number }));
+    dispatch(editContact({ id, name, phone }));
     onFormReset();
     closeModal();
   };
@@ -60,9 +60,9 @@ export const EditContactForm = ({ contact, closeModal }) => {
         Number
         <input
           className={s.input}
-          value={number}
+          value={phone}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required

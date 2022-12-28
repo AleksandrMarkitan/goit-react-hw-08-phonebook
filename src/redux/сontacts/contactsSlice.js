@@ -20,6 +20,7 @@ const contactsSlice = createSlice({
 
   extraReducers: {
     [fetchContacts.pending]: state => {
+      state.contacts.error = null;
       state.contacts.isLoading = true;
     },
     [fetchContacts.fulfilled]: (state, { payload }) => {
@@ -61,7 +62,7 @@ const contactsSlice = createSlice({
     },
     [deleteContact.fulfilled]: (state, { payload }) => {
       state.contacts.items = state.contacts.items.filter(
-        ({ id }) => id !== payload
+        ({ _id }) => _id !== payload
       );
       state.contacts.isLoading = false;
     },

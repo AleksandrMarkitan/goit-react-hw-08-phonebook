@@ -3,7 +3,6 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   selectContacts,
   selectLoading,
@@ -14,6 +13,7 @@ import {
   addContact,
   deleteContact,
 } from 'redux/сontacts/contactsOperation';
+// import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { filterContacts } from 'redux/filter/filterSlice';
 
 import { Section } from '../../components/Section/Section';
@@ -25,18 +25,18 @@ import { Modal } from 'components/Modal/Modal';
 import s from '../ContactsPage/ContactPage.module.scss';
 
 export const ContactsPage = () => {
-  const [modalIsOpen, setmodalIsOpen] = useState('');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [currentContact, setcurrentContact] = useState(null);
 
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
+  console.log(contacts);
   const addNewContact = contact => {
     const newContact = {
       id: nanoid(),
@@ -73,11 +73,12 @@ export const ContactsPage = () => {
         </div>
         <Filter filtration={filtration} />
         {isLoading && <p>Loading...</p>}
-        {error && <p> {error} </p>}
+        {!isLoading && error && <p> {error} </p>}
         {!isLoading && !error && (
           <ContactList contactDelete={contactDelete} openModal={openModal} />
         )}
       </div>
+
       {modalIsOpen && (
         <Modal
           closeModal={closeModal}
