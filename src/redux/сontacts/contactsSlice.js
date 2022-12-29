@@ -48,9 +48,10 @@ const contactsSlice = createSlice({
     },
     [editContact.fulfilled]: (state, { payload }) => {
       const index = state.contacts.items.findIndex(
-        contact => contact.id === payload.id
+        contact => contact._id === payload._id
       );
       state.contacts.items[index] = payload;
+
       state.contacts.isLoading = false;
     },
     [editContact.rejected]: (state, { payload }) => {

@@ -1,19 +1,14 @@
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
   selectLoading,
   selectError,
 } from 'redux/сontacts/contactsSelectors';
-import {
-  fetchContacts,
-  addContact,
-  deleteContact,
-} from 'redux/сontacts/contactsOperation';
-// import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { addContact, deleteContact } from 'redux/сontacts/contactsOperation';
 import { filterContacts } from 'redux/filter/filterSlice';
 
 import { Section } from '../../components/Section/Section';
@@ -26,9 +21,6 @@ import s from '../ContactsPage/ContactPage.module.scss';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [currentContact, setcurrentContact] = useState(null);
@@ -36,7 +28,7 @@ export const ContactsPage = () => {
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  console.log(contacts);
+
   const addNewContact = contact => {
     const newContact = {
       id: nanoid(),

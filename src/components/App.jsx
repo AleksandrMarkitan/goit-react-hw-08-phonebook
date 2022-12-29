@@ -7,17 +7,26 @@ import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { Layout } from './Layout/Layout';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
-import { selectIsFetchingCurrentUser } from 'redux/auth/authSelectors';
+import { fetchContacts } from 'redux/сontacts/contactsOperation';
+import {
+  selectIsFetchingCurrentUser,
+  selectToken,
+} from 'redux/auth/authSelectors';
 import { PublicRoute } from 'HOCs/PublicRoute';
 import { PrivateRoute } from 'HOCs/PrivateRoute';
 
 export const App = () => {
   const isFetchingCurrentUser = useSelector(selectIsFetchingCurrentUser);
+  const token = useSelector(selectToken);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
+  useEffect(() => {
+    if (token) dispatch(fetchContacts());
+  }, [dispatch, token]);
 
   return (
     <>
