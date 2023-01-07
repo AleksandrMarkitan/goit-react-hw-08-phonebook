@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { useState } from 'react';
@@ -30,13 +30,13 @@ export const ContactsPage = () => {
   const error = useSelector(selectError);
 
   const addNewContact = contact => {
-    const newContact = {
-      id: nanoid(),
-      ...contact,
-    };
+    // const newContact = {
+    //   id: nanoid(),
+    //   ...contact,
+    // };
     contacts.some(({ name }) => name === contact.name)
       ? Notify.failure(`${contact.name} is already in contacts!`)
-      : dispatch(addContact(newContact));
+      : dispatch(addContact(contact));
   };
 
   const filtration = filterKey => {

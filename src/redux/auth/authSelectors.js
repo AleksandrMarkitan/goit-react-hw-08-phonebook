@@ -4,6 +4,9 @@ export const selectUserName = state => {
 export const selectUserEmail = state => {
   return state?.auth?.user?.email;
 };
+export const selectUserAvatar = state => {
+  return state?.auth?.user?.avatarURL;
+};
 export const selectToken = state => {
   return state.auth.token;
 };

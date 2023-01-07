@@ -10,6 +10,7 @@ const initialState = {
   user: {
     name: '',
     email: '',
+    avatarURL: '',
   },
   token: null,
   isLoading: false,

@@ -6,6 +6,7 @@ import s from './ContactForm.module.scss';
 
 export const ContactForm = ({ addNewContact }) => {
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [phone, setNumber] = useState('');
 
   const handleContactInput = e => {
@@ -13,6 +14,9 @@ export const ContactForm = ({ addNewContact }) => {
     switch (name) {
       case 'name':
         setName(value);
+        break;
+      case 'email':
+        setEmail(value);
         break;
       case 'phone':
         setNumber(value);
@@ -26,11 +30,12 @@ export const ContactForm = ({ addNewContact }) => {
   const onFormReset = () => {
     setName('');
     setNumber('');
+    setEmail('');
   };
 
   const handleOnSubmit = e => {
     e.preventDefault();
-    addNewContact({ name, phone });
+    addNewContact({ name, email, phone });
     onFormReset();
   };
 
@@ -46,6 +51,18 @@ export const ContactForm = ({ addNewContact }) => {
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          onChange={handleContactInput}
+        />
+      </label>
+      <label className={s.label}>
+        Email
+        <input
+          className={s.input}
+          value={email}
+          type="text"
+          name="email"
+          title=""
           required
           onChange={handleContactInput}
         />

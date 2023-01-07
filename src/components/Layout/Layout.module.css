@@ -1,0 +1,10 @@
+.layoutBox {
+  display: flex;
+  background: #e8f0ff;
+}
+
+.box {
+  display: block;
+  width: 100px;
+  background: #e8f0ff;
+}/*# sourceMappingURL=Layout.module.css.map */
